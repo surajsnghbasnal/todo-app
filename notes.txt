@@ -1,0 +1,35 @@
+npm => node package manager => npm i , npm i package (bootstrap) , npm start  
+npx => node package execute  => npx create-react-app project name 
+nvm => node version manager 
+
+Node js =>  
+
+folder structure => 
+
+package.json => basic project details => dependency => script => 
+
+node modules => downloaded data fron package json dependency object => 
+
+public => index.html => client side 
+src => source => index.js => inject => html => dom => document.getElementById("root")
+
+
+
+Topics => component => ? export import => 
+interpolation => {} => you can write js inside html => 
+Hooks => useState => data handle variable => inbuild function => update => variable 
+
+const [variablename , function] = useState();
+
+map es6 => array => operational => return array => array length effect no => 
+
+
+
+
+
+
+
+
+
+
+
