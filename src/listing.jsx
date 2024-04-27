@@ -5,58 +5,14 @@ import Form from 'react-bootstrap/Form';
 
 
 const Listing = (props) => {
-    const { todo, setTodo, search, handleCompleteTodo, clickEdit, setClickEdit, editElem, setEditElem, newValue, setNewvalue, setToastMessage, setShowToast } = props
-
-
-    const handleEdit = (index) => {
-        setEditElem(index)
-        setClickEdit(true)
-    }
-
-
-    const handleSave = (taskObj) => {
-        setTodo((prev) => {
-            return prev.map((item) => {
-                if (item.name === taskObj.name) {
-                    return {
-                        ...item,
-                        name: newValue ? newValue : taskObj.name
-                    }
-                } else {
-                    return item
-                }
-            })
-        })
-        setClickEdit(false)
-        setNewvalue("")
-        setToastMessage("Your record has been saved.")
-        setShowToast(true)
-        setTimeout(() => {
-            setShowToast(false)
-        }, 3000);
-    }
-
-
-    const handleDelete = (todo) => {
-        setTodo((prev) => {
-            return prev.filter((item) => item.name !== todo.name)
-        })
-        setToastMessage("Your record has been deleted.")
-        setShowToast(true)
-        setTimeout(() => {
-            setShowToast(false)
-        }, 3000);
-
-    }
-
-
-
-
+    const { todo, search, handleCompleteTodo, event, clickEdit, setClickEdit, editElem,  setNewvalue, handleEdit, handleSave, handleDelete, handleSelectAll, handleSelectIndividual, selectAll} = props
+    console.log(selectAll);
     return (
         <>
             <Table striped className='text-center'>
                 <thead>
                     <tr>
+                        <th><Form.Check onChange={handleSelectAll} type="checkbox"/></th>
                         <th>Id</th>
                         <th>Mark Done</th>
                         <th>Todo</th>
@@ -66,20 +22,24 @@ const Listing = (props) => {
                 </thead>
                 <tbody>
                     {
-                        todo.length === 0 ? (
+                        todo?.length === 0 ? (
                             <tr>
-                                <td colSpan={5} className='p-4 fw-bold'>
+                                <td colSpan={6} className='p-4 fw-bold'>
                                     Please Add Some Todo
                                 </td>
                             </tr>
                         ) :
                             (
                                 todo?.filter((item) => item.name?.toLowerCase().includes(search)).map((item, index) => {
+                                    console.log(item.selected)
                                     return (
-                                        <tr >
+                                        <tr key={index}>
+                                            <td><Form.Check type="checkbox" onChange={()=>handleSelectIndividual(item)} defaultChecked={true} /></td>
+
                                             <td>{index + 1}</td>
+                                            
                                             <td>
-                                                <Form.Check disabled={item.status === "Completed" ? true : false} type="checkbox" onChange={(e) => handleCompleteTodo(e, item)} />
+                                                <Form.Check id={index.toString()} disabled={item.status === "Completed"} defaultChecked={item.status === "Completed"} type="checkbox" onChange={() => handleCompleteTodo(item)} />
                                             </td>
                                             {
                                                 editElem === index && clickEdit ? (
@@ -101,7 +61,7 @@ const Listing = (props) => {
                                                     ) : (
                                                         <>
                                                             <Button disabled={item.status === "Completed" ? true : false} onClick={() => handleEdit(index)} variant="secondary">Edit</Button>
-                                                            <Button onClick={() => handleDelete(item)} className='ml-1' variant="danger">Delete</Button>
+                                                            <Button onClick={() => handleDelete(item, index)} className='ml-1' variant="danger">Delete</Button>
                                                         </>
                                                     )
                                                 }
@@ -112,10 +72,9 @@ const Listing = (props) => {
                             )
                     }
 
-
-                    { todo.length != 0 &&   todo?.filter((item) =>item.name.toLowerCase().includes(search)).length === 0 && (
+                    { todo?.length != 0 &&   todo?.filter((item) =>item.name.toLowerCase().includes(search)).length === 0 && (
                         <tr>
-                            <td colSpan={5} className='p-4 fw-bold'>
+                            <td colSpan={6} className='p-4 fw-bold'>
                                 No Record Found
                             </td>
                         </tr>
