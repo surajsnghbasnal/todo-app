@@ -1,16 +1,3 @@
 {
-  "todo": [
-    {
-      "id": "f0b2",
-      "name": "One",
-      "status": "Completed",
-      "selected": false
-    },
-    {
-      "id": "84c9",
-      "name": "Two",
-      "status": "Pending",
-      "selected": false
-    }
-  ]
+  "todo": []
 }

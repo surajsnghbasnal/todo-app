@@ -100,7 +100,6 @@ const handleSelect = (eventKey) => {
         settitle("Pending")
         setevent(eventKey)
     }
-    // console.log(eventKey)
 }
 
 const handleSelectAll =(e)=>{
