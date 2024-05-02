@@ -31,13 +31,10 @@ const Listing = (props) => {
                         ) :
                             (
                                 todo?.filter((item) => item.name?.toLowerCase().includes(search)).map((item, index) => {
-                                    console.log(item.selected)
                                     return (
                                         <tr key={index}>
-                                            <td><Form.Check type="checkbox" onChange={()=>handleSelectIndividual(item)} defaultChecked={true} /></td>
-
+                                            <td><Form.Check type="checkbox" id={index.toString()} onChange={(e)=>handleSelectIndividual(item , index , e)}  checked={item.selected} disabled={item.selected } /></td>
                                             <td>{index + 1}</td>
-                                            
                                             <td>
                                                 <Form.Check id={index.toString()} disabled={item.status === "Completed"} defaultChecked={item.status === "Completed"} type="checkbox" onChange={() => handleCompleteTodo(item)} />
                                             </td>
