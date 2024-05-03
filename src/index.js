@@ -1,15 +1,20 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import { BrowserRouter } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'mdb-react-ui-kit/dist/css/mdb.min.css';
+import "@fortawesome/fontawesome-free/css/all.min.css";
 import reportWebVitals from './reportWebVitals';
-import Todo from './todo';
+import './index.css';
+import App from './app';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
-  <React.StrictMode>
-    <Todo/>
-  </React.StrictMode>
-);
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>
+)
+
 reportWebVitals();
-console.log()

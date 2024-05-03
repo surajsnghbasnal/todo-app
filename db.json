@@ -1,3 +1,15 @@
 {
+  "user": [
+    {
+      "id": "42d3",
+      "name": "suraj",
+      "email": "surajsngbasnal@gmail.com",
+      "username": "surajbasnal",
+      "contact": "9911788087",
+      "password": "suraj@1234",
+      "repeatPass": "suraj@1234",
+      "agree": true
+    }
+  ],
   "todo": []
 }

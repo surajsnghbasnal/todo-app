@@ -27,7 +27,7 @@ const [selectAll, setselectAll] = useState(false)
 const [selectedId, setselectedId] = useState(null)
 
 const getTodo = () => {
-    axios.get('http://localhost:4200/todo')
+    axios.get('http://localhost:8000/todo')
         .then(response => {
             setTodo(response.data);
         })
@@ -47,7 +47,7 @@ const handleSetTodo = () => {
     }, 2000)
     } else {
         // set data to database by using axios.
-        axios.post('http://localhost:4200/todo', {name: tempTodo, status: "Pending", selected: false})
+        axios.post('http://localhost:8000/todo', {name: tempTodo, status: "Pending", selected: false})
         .then((response)=>{
             getTodo()
             console.log(getTodo());
@@ -59,7 +59,7 @@ const handleSetTodo = () => {
 
 const handleCompleteTodo = (item) => {
             // set data to database by using axios.
-    axios.patch(`http://localhost:4200/todo/${item.id}`, {status:"Completed"}).then((response)=>{
+    axios.patch(`http://localhost:8000/todo/${item.id}`, {status:"Completed"}).then((response)=>{
         getTodo()
     }).catch((error) => console.log(error))
 }
@@ -70,7 +70,7 @@ const handleEdit = (index) => {
 }
 
 const handleSave = (item) => {
-    axios.patch(`http://localhost:4200/todo/${item.id}`, {name: newValue ? newValue : item.name}).then((response)=>{
+    axios.patch(`http://localhost:8000/todo/${item.id}`, {name: newValue ? newValue : item.name}).then((response)=>{
         getTodo()
     }).catch((error)=> console.log(error))
     setClickEdit(false)
@@ -83,7 +83,7 @@ const handleSave = (item) => {
 }
 
 const handleDelete = (item, index) => {
-    axios.delete(`http://localhost:4200/todo/${item.id}`).then((response)=>{
+    axios.delete(`http://localhost:8000/todo/${item.id}`).then((response)=>{
         getTodo()
         document.getElementById(index.toString()).checked = false
     }).catch((error)=> console.log(error))
@@ -107,13 +107,13 @@ const handleSelectAll =(e)=>{
     if (e.target.checked) {
         setselectedId(todo?.map((item)=> item.id))
         todo?.map((item)=> item.id).map((item)=>{
-            axios.patch(`http://localhost:4200/todo/${item}`,{selected: true}).then((response)=>{
+            axios.patch(`http://localhost:8000/todo/${item}`,{selected: true}).then((response)=>{
                 getTodo()
             }).catch((error)=> console.log(error))
         })
     }else{
         selectedId.map((item)=>{
-            axios.patch(`http://localhost:4200/todo/${item}`,{selected: false}).then((response)=>{
+            axios.patch(`http://localhost:8000/todo/${item}`,{selected: false}).then((response)=>{
                 getTodo()
             }).catch((error)=> console.log(error))
         })
