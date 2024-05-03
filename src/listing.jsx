@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 
 
 const Listing = (props) => {
-    const { todo, search, handleCompleteTodo, event, clickEdit, setClickEdit, editElem,  setNewvalue, handleEdit, handleSave, handleDelete, handleSelectAll, handleSelectIndividual, selectAll} = props
+    const { todo, search, handleCompleteTodo, event, clickEdit, setClickEdit, editElem,  setNewvalue, handleEdit, handleSave, handleDelete, handleSelectAll, handleSelectIndividual, selectAll, title} = props
     console.log(selectAll);
     return (
         <>
@@ -30,7 +30,8 @@ const Listing = (props) => {
                             </tr>
                         ) :
                             (
-                                todo?.filter((item) => item.name?.toLowerCase().includes(search)).map((item, index) => {
+                                todo?.filter((item) => item.name?.toLowerCase().includes(search)).filter((item)=> item.status== title || title== "All Tasks").map((item, index) => {
+                                    console.log(item.selected)
                                     return (
                                         <tr key={index}>
                                             <td><Form.Check type="checkbox" id={index.toString()} onChange={(e)=>handleSelectIndividual(item , index , e)}  checked={item.selected} disabled={item.selected } /></td>
