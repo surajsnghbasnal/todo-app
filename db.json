@@ -1,22 +1,15 @@
 {
-  "todo": [
+  "user": [
     {
-      "id": "f0b2",
-      "name": "One",
-      "status": "Completed",
-      "selected": true
-    },
-    {
-      "id": "84c9",
-      "name": "Two",
-      "status": "Pending",
-      "selected": true
-    },
-    {
-      "id": "7b92",
-      "name": "Car Wash",
-      "status": "Pending",
-      "selected": true
+      "id": "42d3",
+      "name": "suraj",
+      "email": "surajsngbasnal@gmail.com",
+      "username": "surajbasnal",
+      "contact": "9911788087",
+      "password": "suraj@1234",
+      "repeatPass": "suraj@1234",
+      "agree": true
     }
-  ]
+  ],
+  "todo": []
 }
