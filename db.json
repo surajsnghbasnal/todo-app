@@ -9,7 +9,82 @@
       "password": "suraj@1234",
       "repeatPass": "suraj@1234",
       "agree": true
+    },
+    {
+      "id": "3573",
+      "name": "shashi",
+      "email": "shashi@gmail.com",
+      "username": "shashikumar",
+      "contact": "9873325264",
+      "password": "shashi@1234",
+      "repeatPass": "shashi@1234",
+      "agree": true
+    },
+    {
+      "id": "8ba1",
+      "name": "sandeep",
+      "email": "sandeep@gmail.com",
+      "username": "surajbasnal",
+      "contact": "8178130219",
+      "password": "sandeep@1234",
+      "repeatPass": "sandeep@1234",
+      "agree": true
     }
   ],
-  "todo": []
+  "todo": [
+    {
+      "id": "5516",
+      "name": "gym",
+      "status": "Completed",
+      "selected": false,
+      "userId": "3573",
+      "createdAt": "2024-05-04",
+      "completedAt": "2024-05-05"
+    },
+    {
+      "id": "a294",
+      "name": "car service",
+      "status": "Completed",
+      "selected": false,
+      "userId": "3573",
+      "createdAt": "2024-05-04",
+      "completedAt": "2024-05-04"
+    },
+    {
+      "id": "b373",
+      "name": "lear new hooks in react js",
+      "status": "Pending",
+      "selected": false,
+      "userId": "3573",
+      "createdAt": "2024-05-04",
+      "completedAt": null
+    },
+    {
+      "id": "d3f7",
+      "name": "add filter by date functionality",
+      "status": "Pending",
+      "selected": false,
+      "userId": "3573",
+      "createdAt": "2024-05-05",
+      "completedAt": null
+    },
+    {
+      "id": "46fb",
+      "name": "scooty wash",
+      "status": "Pending",
+      "selected": false,
+      "userId": "3573",
+      "createdAt": "2024-05-05",
+      "completedAt": null
+    },
+    {
+      "id": "5d1d",
+      "name": "add email fire functionality",
+      "status": "Pending",
+      "selected": false,
+      "userId": "3573",
+      "createdAt": "2024-05-05",
+      "completedAt": null
+    }
+  ]
 }

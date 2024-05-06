@@ -36,3 +36,8 @@
     transform: rotate(360deg);
   }
 }
+
+.logout-button:hover {
+  background-color: #D1485F !important;
+  color: white;
+}

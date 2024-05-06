@@ -13,9 +13,10 @@ import {
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { useState } from "react";
+import { Divider } from 'semantic-ui-react'
 import axios from "axios";
 import Toast from "react-bootstrap/Toast";
-import {useNavigate} from 'react-router-dom'
+import {useNavigate, Link} from 'react-router-dom'
 
 
 function Register() {
@@ -73,7 +74,7 @@ function Register() {
         setShow(true);
         setShowToast("Please enter the valid email.")
         return false;
-    }else if (contact.length != 10){
+    }else if (contact.length !== 10){
         setShow(true);
         setShowToast("Please enter the valid contact number.")
         return false;
@@ -153,12 +154,16 @@ function Register() {
 
                 <div className="form-check d-flex justify-content-center mb-5">
                     <input className="form-check-input me-2" type="checkbox" value="" id="isAggree" onChange={(e) => setData({ ...data, agree: e.target.checked })}/>
-                    <label className="form-check-label"> I agree all statements in <a href="#!">Terms of service</a></label>
+                    <label className="form-check-label"> I agree all statements in  <Link to="/" className="text-blue-600">Terms of service</Link></label>
                 </div>
 
                     <MDBBtn className="mb-4 bg-success" size="lg" onClick={handleSetData}>
                         Register
                     </MDBBtn>
+
+                    <Divider horizontal>Or</Divider>
+
+                    <p className="mb-2 ">Already registered?  <Link to="/login" className="text-blue-600">Login in</Link></p>
                 </MDBCol>
 
                 <MDBCol md="10" lg="6" className="order-1 order-lg-2 d-flex align-items-center">
