@@ -12,8 +12,9 @@ const App = () => {
     const navigate = useNavigate();
     
     useEffect(()=>{
-        location.pathname === "/" && navigate("/login")
+        location.pathname === "/" && localStorage.getItem('token') && navigate("/login")
     }, [])
+
 
     return (
             <Routes>

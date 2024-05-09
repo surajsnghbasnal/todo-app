@@ -14,10 +14,10 @@ const Listing = (props) => {
                     <tr>
                         <th><Form.Check disabled={todo?.length === 0} onChange={handleSelectAll} type="checkbox"/></th>
                         <th>Id</th>
-                        <th>Mark Done</th>
-                        <th>Created Date</th>
                         <th>Todo</th>
+                        <th>Mark Done</th>
                         <th>Status</th>
+                        <th>Created Date</th>
                         <th>Completed Date</th>
                         <th>Action</th>
                     </tr>
@@ -38,10 +38,7 @@ const Listing = (props) => {
                                             <td><Form.Check type="checkbox" onChange={()=>handleSelectIndividual(item)} defaultChecked={true} /></td>
 
                                             <td>{index + 1}</td>
-                                            <td>
-                                                <Form.Check id={index.toString()} disabled={item.status === "Completed"} defaultChecked={item.status === "Completed"} type="checkbox" onChange={() => handleCompleteTodo(item)} />
-                                            </td>
-                                            <td>{item.createdAt}</td>
+
                                             
                                             {
                                                 editElem === index && clickEdit ? (
@@ -52,22 +49,40 @@ const Listing = (props) => {
                                                     <td>{item.name}</td>
                                                 )
                                             }
+                                            <td>
+                                                <Form.Check id={index.toString()} disabled={item.status === "Completed"} defaultChecked={item.status === "Completed"} type="checkbox" onChange={() => handleCompleteTodo(item)} />
+                                            </td>
                                             <td className={item.status === "Pending" ? "text-warning" : "text-danger"}>{item.status}</td>
+
+                                            
+
+                                            <td>{item.createdAt}</td>
+                                            
+                                            
+
                                             <td>{item.completedAt || "N/A"}</td>
+
                                             <td >
+                                                {/* <FontAwesomeIcon icon="fa-solid fa-coffee" size="xs" /> */}
                                                 {
-                                                    editElem === index && clickEdit ? (
-                                                        <>
-                                                            <Button onClick={() => handleSave(item)} variant="primary">Save</Button>
-                                                            <Button className='ml-1' onClick={() => setClickEdit(false)} variant="danger">Cancel</Button>
-                                                        </>
-                                                    ) : (
-                                                        <>
-                                                            <Button disabled={item.status === "Completed" ? true : false} onClick={() => handleEdit(index)} variant="secondary">Edit</Button>
-                                                            <Button onClick={() => handleDelete(item, index)} className='ml-1' variant="danger">Delete</Button>
-                                                        </>
-                                                    )
+                                                    
+                                                    <div id='action-btn-container'>
+                                                        {
+                                                        editElem === index && clickEdit ? (
+                                                                <>
+                                                                <Button onClick={() => handleSave(item)} variant="primary">Save</Button>
+                                                                <Button className='ml-1' onClick={() => setClickEdit(false)} variant="danger">Cancel</Button>
+                                                            </>
+                                                        ) : (
+                                                                <>
+                                                                <Button disabled={item.status === "Completed" ? true : false} onClick={() => handleEdit(index)} variant="secondary">Edit</Button>
+                                                                <Button onClick={() => handleDelete(item, index)} className='ml-1' variant="danger">Delete</Button>
+                                                            </>
+                                                        )
+                                                        }
+                                                    </div>
                                                 }
+                                                
                                             </td>
                                         </tr>
                                     )
@@ -75,9 +90,10 @@ const Listing = (props) => {
                             )
                     }
 
-                    { todo?.length != 0 &&   todo?.filter((item) =>item.name.toLowerCase().includes(search)).length === 0 && (
+                    {/* || todo?.filter((item)=> item.status== title).length === 0 &&  */}
+                    { todo?.length != 0 &&   todo?.filter((item) =>item.name.toLowerCase().includes(search)).length === 0 &&(
                         <tr>
-                            <td colSpan={7} className='p-4 fw-bold'>
+                            <td colSpan={8} className='p-4 fw-bold'>
                                 No Record Found
                             </td>
                         </tr>

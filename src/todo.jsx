@@ -7,31 +7,33 @@ import Alert from 'react-bootstrap/Alert';
 import { Toast,  DropdownButton, Dropdown , Navbar, Container,  } from 'react-bootstrap';
 import axios from 'axios'
 import {useNavigate } from 'react-router-dom';
+import emailjs from '@emailjs/browser';
+
 
 const Todo = () => {
-const [todo, setTodo] = useState();
-const [tempTodo, setTempTodo] = useState(null);
-const [error, setError] = useState()
-const [show, setShow] = useState(false);
-const [search, setSearch] = useState("")
-const handleClose = () => setShow(false);
-const handleShow = () => setShow(true);
-const [clickEdit, setClickEdit] = useState(false)
-const [editElem, setEditElem] = useState()
-const [deleteElem, setDeleteElem] = useState("")
-const [newValue, setNewvalue] = useState()
-const [showToast, setShowToast] = useState(false);
-const [toastMessage, setToastMessage] = useState('');
-const [title, settitle] = useState("All Tasks")
-const [event, setevent] = useState()
-const [selectAll, setselectAll] = useState(false)
-const [selectedId, setselectedId] = useState(null)
-const [fromDate, setFromDate] = useState(null)
-const [toDate, setToDate] = useState(null)
+    const [todo, setTodo] = useState();
+    const [tempTodo, setTempTodo] = useState(null);
+    const [error, setError] = useState()
+    const [show, setShow] = useState(false);
+    const [search, setSearch] = useState("")
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    const [clickEdit, setClickEdit] = useState(false)
+    const [editElem, setEditElem] = useState()
+    const [deleteElem, setDeleteElem] = useState("")
+    const [newValue, setNewvalue] = useState()
+    const [showToast, setShowToast] = useState(false);
+    const [toastMessage, setToastMessage] = useState('');
+    const [title, settitle] = useState("All Tasks")
+    const [event, setevent] = useState()
+    const [selectAll, setselectAll] = useState(false)
+    const [selectedId, setselectedId] = useState(null)
+    const [fromDate, setFromDate] = useState(null)
+    const [toDate, setToDate] = useState(null)
 
-const navigate = useNavigate();
+    const navigate = useNavigate();
 
-const getTodo = () => {
+    const getTodo = () => {
     axios.get('http://localhost:8000/todo')
         .then(response => {
             const userTodo = response.data.filter((item)=> item.userId === localStorage.getItem('token'))
@@ -73,7 +75,7 @@ const handleCompleteTodo = (item) => {
             // set data to database by using axios.
     axios.patch(`http://localhost:8000/todo/${item.id}`, {status:"Completed", completedAt: getDate() }).then((response)=>{
         getTodo()
-        // sendEmail()
+        sendEmail()
     }).catch((error) => console.log(error))
 }
 
@@ -161,8 +163,8 @@ const handleLogout = () => {
     navigate('/login')
 };
 
-const sendEmail = (name, email, message) => {
-    // e.preventDefault();
+const sendEmail = (name, email, message, e) => {
+    e.preventDefault();
   
     let payload = {
       to_name : name,
@@ -170,13 +172,13 @@ const sendEmail = (name, email, message) => {
       message : message
     }
   
-    // emailjs
+    emailjs
       .sendForm('service_knfyoug', 'template_18oqm7p', payload, {
         publicKey: 'z58cv0Wt2c5dUBmLS',
       })
       .then(
         () => {
-          console.log('SUCCESS!');
+          console.log('SUCCESS! Email');
         },
         (error) => {
           console.log('FAILED...', error.text);
@@ -220,26 +222,29 @@ return (
             <Form className='flex gap-2'>
                 <Form.Group className='flex items-center gap-2' controlId="startDate">
                     <Form.Label className='text-black mt-1'>From:</Form.Label>
-                    <Form.Control type="date" value={fromDate} onChange={(e) => setFromDate(e.target.value)}/>
+                    <Form.Control type="date" max={toDate} value={fromDate} onChange={(e) => setFromDate(e.target.value)}/>
                 </Form.Group>
 
                 <Form.Group className='flex items-center gap-2' controlId="endDate">
                     <Form.Label className='text-black mt-1'>To:</Form.Label>
-                    <Form.Control type="date" value={toDate} onChange={(e) => setToDate(e.target.value)}/>
+                    <Form.Control  type="date" min={fromDate} value={toDate} onChange={(e) => setToDate(e.target.value)}/>
                 </Form.Group>
 
-                <Button variant="primary" onClick={()=> console.log(`from date ==> ${fromDate} and to date ==> ${toDate}` )}>Filter</Button>
+                <Button variant="primary" className={fromDate === null ? "hidden" : fromDate === ""? "hidden" : "block"} onClick={()=> {
+                    setFromDate("")
+                    setToDate("")
+                }}>Clear</Button>
             </Form>
         </div>
     
-        <div className='d-flex  justify-content-around w-50'>
-        <DropdownButton disabled={todo?.length > 0? false: true} title={title} variant="primary" onSelect={handleSelect}>
+        <div className='d-flex  justify-content-between w-50'>
+        <DropdownButton className={todo?.length <= 0? "hidden" : "block" } title={title} variant="primary" onSelect={handleSelect}>
             <Dropdown.Item eventKey="All tasks">All Tasks</Dropdown.Item>
             <Dropdown.Item eventKey="Completed">Completed</Dropdown.Item>
             <Dropdown.Item eventKey="Pending">Pending</Dropdown.Item>
         </DropdownButton>
 
-        <Button disabled={selectedId === null || selectedId?.length === 0} variant="danger" onClick={()=>handleBulkDelete()}>
+        <Button disabled={selectedId === null || selectedId?.length === 0} className={selectedId === null? "hidden" : selectedId?.length === 0 ? 'hidden' : "block"} variant="danger" onClick={()=>handleBulkDelete()}>
             Delete
         </Button>
 

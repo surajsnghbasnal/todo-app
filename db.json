@@ -29,6 +29,16 @@
       "password": "sandeep@1234",
       "repeatPass": "sandeep@1234",
       "agree": true
+    },
+    {
+      "id": "fb34",
+      "name": "suraj",
+      "email": "surajsnghbasnal@gmail.com",
+      "username": "surajsnghbasnal",
+      "contact": "8178130219",
+      "password": "suraj@1234",
+      "repeatPass": "suraj@1234",
+      "agree": true
     }
   ],
   "todo": [
@@ -53,20 +63,20 @@
     {
       "id": "b373",
       "name": "lear new hooks in react js",
-      "status": "Pending",
+      "status": "Completed",
       "selected": false,
       "userId": "3573",
       "createdAt": "2024-05-04",
-      "completedAt": null
+      "completedAt": "2024-05-07"
     },
     {
       "id": "d3f7",
       "name": "add filter by date functionality",
-      "status": "Pending",
+      "status": "Completed",
       "selected": false,
       "userId": "3573",
       "createdAt": "2024-05-05",
-      "completedAt": null
+      "completedAt": "2024-05-06"
     },
     {
       "id": "46fb",
@@ -85,6 +95,24 @@
       "userId": "3573",
       "createdAt": "2024-05-05",
       "completedAt": null
+    },
+    {
+      "id": "7ca8",
+      "name": "reach master legue this season",
+      "status": "Pending",
+      "selected": false,
+      "userId": "3573",
+      "createdAt": "2024-05-06",
+      "completedAt": null
+    },
+    {
+      "id": "bcf3",
+      "name": "reach master legue this season",
+      "status": "Completed",
+      "selected": false,
+      "userId": "fb34",
+      "createdAt": "2024-05-06",
+      "completedAt": "2024-05-06"
     }
   ]
 }
