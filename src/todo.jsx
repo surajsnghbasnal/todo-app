@@ -141,8 +141,9 @@ const handleSelectAll =(e)=>{
     }
 }
 
-const handleSelectIndividual =(item)=>{
-    console.log(item.id)
+const handleSelectIndividual =(item , index , e)=>{
+    console.log(item.id , "hey" ,  document.getElementById(index.toString()) , e.target.checked)
+    document.getElementById(index.toString()).checked  = false;
     if (!selectAll) {
         setselectedId((prev)=>[...prev, item.id])
     }else{

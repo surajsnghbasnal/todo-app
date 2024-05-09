@@ -35,11 +35,16 @@ const Listing = (props) => {
                                 todo?.filter((item) => item.name?.toLowerCase().includes(search)).filter((item)=> item.status== title || title== "All Tasks").filter((item)=> item.createdAt >= (fromDate || "1400-01-01") && item.createdAt <= (toDate || "3000-01-01")).map((item, index) => {
                                     return (
                                         <tr key={index}>
-                                            <td><Form.Check type="checkbox" onChange={()=>handleSelectIndividual(item)} defaultChecked={true} /></td>
-
+                                            <td><Form.Check type="checkbox" id={index.toString()} onChange={(e)=>handleSelectIndividual(item , index , e)}  checked={item.selected} disabled={item.selected } /></td>
                                             <td>{index + 1}</td>
+<<<<<<< HEAD
 
                                             
+=======
+                                            <td>
+                                                <Form.Check id={index.toString()} disabled={item.status === "Completed"} defaultChecked={item.status === "Completed"} type="checkbox" onChange={() => handleCompleteTodo(item)} />
+                                            </td>
+>>>>>>> eefaf2f8c9648da1e42593af99a3984ddbadf316
                                             {
                                                 editElem === index && clickEdit ? (
                                                     <input
