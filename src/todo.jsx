@@ -45,8 +45,9 @@ const Todo = () => {
 };
 useEffect(()=>{
     getTodo()
+    emailjs.init("z58cv0Wt2c5dUBmLS")
 }, [])
-
+// useEffect(() => emailjs.init("z58cv0Wt2c5dUBmLS"), []);
 
 const getDate=()=>{
     const date = new Date()    
@@ -75,7 +76,7 @@ const handleCompleteTodo = (item) => {
             // set data to database by using axios.
     axios.patch(`http://localhost:8000/todo/${item.id}`, {status:"Completed", completedAt: getDate() }).then((response)=>{
         getTodo()
-        sendEmail()
+        sendEmail("suraj", "surajsnghbasnal@gmail.com", "hey you've successfully completed this task.")
     }).catch((error) => console.log(error))
 }
 
@@ -164,25 +165,25 @@ const handleLogout = () => {
     navigate('/login')
 };
 
-const sendEmail = (name, email, message, e) => {
-    e.preventDefault();
+const sendEmail = (name, email, message) => {
+    // e.preventDefault();
   
     let payload = {
-      to_name : name,
+    //   to_name : name,
       to_email : email,
       message : message
     }
   
     emailjs
       .sendForm('service_knfyoug', 'template_18oqm7p', payload, {
-        publicKey: 'z58cv0Wt2c5dUBmLS',
+        publicKey:'z58cv0Wt2c5dUBmLS'
       })
       .then(
         () => {
           console.log('SUCCESS! Email');
         },
         (error) => {
-          console.log('FAILED...', error.text);
+          console.log('FAILED...', error);
         },
       );
   };

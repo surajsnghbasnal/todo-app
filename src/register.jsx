@@ -17,7 +17,8 @@ import { Divider } from 'semantic-ui-react'
 import axios from "axios";
 import Toast from "react-bootstrap/Toast";
 import {useNavigate, Link} from 'react-router-dom'
-
+import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
+import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
 
 function Register() {
     const navigate = useNavigate()
@@ -26,6 +27,8 @@ function Register() {
     const [error, setError] = useState(true)
     const [userInfo, setUserInfo] = useState(null)
     const [showToast, setShowToast] = useState("");
+    const [showPw, setShowPw] = useState(false)
+
     
     const getData = ()=>{
         axios.get("http://localhost:8000/user").then((response)=>{
@@ -142,9 +145,15 @@ function Register() {
                     <MDBInput label="username" id="form1" type="text" className="w-100" onChange={(e) => setData({ ...data, username: e.target.value})}/>
                 </div>
 
-                <div className="d-flex flex-row align-items-center mb-4 w-75">
+                <div className="d-flex flex-row align-items-center mb-4 w-75 relative">
                     <MDBIcon fas icon="lock me-3" size="lg" />
-                    <MDBInput label="Password" id="form3" type="password" onChange={(e) => setData({ ...data, password: e.target.value})}/>
+                    <MDBInput label="Password" id="form3" type={showPw? "text" : "password"} onChange={(e) => setData({ ...data, password: e.target.value})}/>
+                    <button id="eye" className="absolute right-0 w-9 h-9" onClick={()=>setShowPw(!showPw)}>
+                        {
+                            showPw ? <RemoveRedEyeOutlinedIcon className="absolute right-2 bottom-2 text-gray-500"/> :
+                            <VisibilityOffOutlinedIcon className="absolute right-2 bottom-2 text-gray-500"/>  
+                        }
+                    </button>
                 </div>
 
                 <div className="d-flex flex-row align-items-center mb-4 w-75">

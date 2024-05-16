@@ -12,7 +12,7 @@ const App = () => {
     const navigate = useNavigate();
     
     useEffect(()=>{
-        location.pathname === "/" && localStorage.getItem('token') && navigate("/login")
+        location.pathname === "/" && navigate("/login")
     }, [])
 
 
